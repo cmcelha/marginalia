@@ -70,7 +70,18 @@ Three options. Ask, no default — the choice meaningfully changes the experienc
 - **Medium** — one chapter-sized grouping per session, ~10-15 minutes. Best for evening reading or a more substantial weekly cadence.
 - **Long** — one chapter (or larger) per session, ~20-30 minutes. Best for weekend deep reads or readers who want fewer, denser sessions.
 
-### Step 5 — Choose the schedule
+### Step 5 — Choose the reading mode
+
+How does the reader want to do the daily ritual? Ask ONE question with a one-line explanation of each. Record the answer as `delivery_mode` in `progress.json` (Step 7).
+
+- **Desktop** — "You'll read and answer here in Cowork on this computer." No phone, no pairing. This is the default; if the reader is unsure, pick it.
+- **Dispatch** — "You'll do the daily reading from your phone via Cowork Dispatch; this computer does the work in the background." Works on iPhone **and Android** (pair by scanning a QR with the Claude mobile app). Requires a Pro/Max Cowork plan and that this desktop is on/awake when the lesson fires.
+
+Do not walk the reader through Dispatch pairing inline. If they pick Dispatch and aren't paired yet, point them at `MOBILE_USAGE.md` and continue — pairing can happen after onboarding.
+
+Mode is not permanent: tell the reader they can switch Desktop↔Dispatch anytime with `manage-reading`, with no loss of position or notes.
+
+### Step 6 — Choose the schedule
 
 Two options:
 
@@ -79,7 +90,9 @@ Two options:
 
 If the user picks scheduled, confirm the cron and create the task. The task's prompt should be: *"Run the deliver-lesson skill for the active Marginalia reading."*
 
-### Step 6 — Write the reading folder files
+**Interaction with mode:** Dispatch mode needs a morning push to be useful, so when `delivery_mode` is `dispatch`, default to **scheduled** and only fall back to on-demand if the reader explicitly says they'll pull each lesson manually from their phone. Desktop mode is free to pick either.
+
+### Step 7 — Write the reading folder files
 
 **`progress.json`:**
 
@@ -89,6 +102,7 @@ If the user picks scheduled, confirm the cron and create the task. The task's pr
   "text_title": "Art of War",
   "text_slug": "art-of-war",
   "cadence": "short",
+  "delivery_mode": "desktop",
   "schedule": "weekdays at noon",
   "current_unit_index": 1,
   "total_short_units": 59,
@@ -98,6 +112,8 @@ If the user picks scheduled, confirm the cron and create the task. The task's pr
   "notes": ""
 }
 ```
+
+`delivery_mode` is `"desktop"` or `"dispatch"` from Step 5. `deliver-lesson` and `discuss-answer` read it to choose their formatting budget; `manage-reading` rewrites it on a switch. Folders written before this field existed are treated as `"desktop"`.
 
 `started_date` and `last_lesson_date` stay null until the first lesson actually delivers.
 
@@ -130,14 +146,17 @@ Running record of answers and where the thinking went on each unit. Future lesso
 
 **`~/.marginalia/active-reading-path`** — a text file containing the absolute path to the new reading folder. If the file already exists (user is starting an additional reading), ask before overwriting: "You have an active reading of {previous text}. Switch to this new one, or keep the old one active?" If they keep both, the new one is created but not activated — they can switch later.
 
-### Step 7 — Welcome message
+### Step 8 — Welcome message
 
 A short, warm confirmation to the user:
 
-- The text they're starting, the cadence, and the schedule
+- The text they're starting, the cadence, the mode, and the schedule
 - When the first lesson will arrive (next scheduled fire, or "say 'today's lesson' whenever you're ready" for on-demand)
 - A one-line note about what to do when they want to answer ("just reply in chat — I'll evaluate, take notes, and pick up the thread in future lessons")
-- One sentence on how to change anything later (e.g. "say 'change my profile' or 'switch cadence' anytime")
+- **Mode-specific line:**
+  - Desktop mode — "You can move this to your phone anytime — say 'switch to Dispatch' and I'll set it up."
+  - Dispatch mode — "Open the Claude app on your phone and scan the Dispatch QR to read on the go; see `MOBILE_USAGE.md` if you haven't paired yet."
+- One sentence on how to change anything later (e.g. "say 'change my profile', 'switch cadence', or 'switch mode' anytime — that's `manage-reading`")
 
 Do NOT lecture about the design philosophy or features. The first impression should be calm, not breathless.
 

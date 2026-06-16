@@ -16,3 +16,11 @@ test-reading/
 # Build artifacts
 *.plugin
 /tmp/
+
+# Library build scratch — texts live in the marginalia-library repo
+library/_tmp/
+library/_sources/
+library/*LOG*.md
+library/*REPORT*.md
+library/*STRATEGY*.md
+library/SPLIT_PLAN.md

@@ -36,6 +36,7 @@ If none of these resolves to a valid reading folder, surface a short message: "N
    - `current_unit_index` — the next short-unit number to deliver
    - `total_short_units` — the text's short-tier count
    - `cadence` — `"short"`, `"medium"`, or `"long"`
+   - `delivery_mode` — `"desktop"` or `"dispatch"` (absent → treat as `"desktop"`). Controls formatting; see "Mode-aware formatting" below.
    - `started_date` — ISO date
    - `last_lesson_date` — ISO date or null
    - `completed_units` — array of `{units: [...], date: "..."}`
@@ -56,7 +57,7 @@ If none of these resolves to a valid reading folder, surface a short message: "N
 
 6. **Calibrate the context paragraph** using the student profile in `student_notes.md`:
    - Read the profile sections (Background, Question style preferences, Calibration).
-   - The context paragraph is **ONE paragraph, 4-6 sentences**. Never two paragraphs.
+   - The context paragraph is **ONE paragraph, 4-6 sentences** in `desktop` mode. In `dispatch` mode keep it to **2-3 sentences** — a phone screen can't carry more before the passage and questions scroll off. Never two paragraphs.
    - If the profile lists philosophical/historical references the user knows (e.g. Heidegger, Nietzsche, Warring States history), anchor the context in *one* of those when the passage genuinely invites it. Don't survey several — pick one.
    - If the profile indicates the user is a re-reader or has advanced background, **skip basic framing** (no "ancient China" hand-waving). If they're a first-time reader of this text, give the basic framing once and only once.
    - End with one specific thing to watch for as they read. Don't summarize the conclusion — the questions will reach toward it.
@@ -106,14 +107,24 @@ If none of these resolves to a valid reading folder, surface a short message: "N
     - Append to `completed_units`: `{units: [...delivered today], date: "YYYY-MM-DD"}`.
     - Do not touch `cadence`, `total_short_units`, `marginalia_version`, or other fields.
 
-11. **Surface to the user** with:
+11. **Surface to the user.** Branch on `delivery_mode`:
+
+    **`desktop`** (default) — the full surface:
     - Day number ("Day 5 of 59")
     - Unit title or grouping title
     - A direct link to the lesson file: `[Today's lesson](computer://{absolute-path-to-lesson-file})`
     - The passage itself (quoted, inline) so they see it without opening the file
     - The two questions inline
 
-    Tone: steady, unhurried, no fanfare. This is a quiet daily ritual. Do not ask the user anything in the delivery message; just deliver.
+    **`dispatch`** — phone-tight, **passage first**, whole message under ~600 tokens:
+    - Lead with the **passage** (quoted) — it's the first thing the reader should see on a small screen.
+    - Then a one-line header: "Day {N} of {total} — {short unit/grouping title}".
+    - Then the **2-3 sentence** context paragraph from step 6.
+    - Then the two questions inline.
+    - Then a single closing line: "Reply here when you have a few minutes."
+    - Omit the `computer://` file link (the reader is on a phone and can't open it); the full lesson is still saved to `lessons/` for when they're back at the desktop.
+
+    Tone in both modes: steady, unhurried, no fanfare. This is a quiet daily ritual. Do not ask the user anything in the delivery message; just deliver.
 
 ## What not to do
 

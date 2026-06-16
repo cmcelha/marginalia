@@ -27,7 +27,7 @@ Two things:
 Use the same resolution rules as `deliver-lesson`: explicit path argument → `~/.marginalia/active-reading-path` → cwd. If no active reading, surface a short message asking which reading they're answering for.
 
 Read:
-- `progress.json` — to identify the most recently delivered unit(s) and the user's cadence
+- `progress.json` — to identify the most recently delivered unit(s), the user's cadence, and `delivery_mode` (`"desktop"` or `"dispatch"`; absent → `"desktop"`). The mode sets the reply-length budget in Step 6.
 - `student_notes.md` — the full profile + lesson log (you'll need both calibration and cross-day pattern context)
 - `lessons/YYYY-MM-DD.md` for the most recent delivered date — to see the questions and the passage
 - `text.md` — if a deep textual point comes up, you may need to look at the actual verses
@@ -88,6 +88,8 @@ Structure (loose — not a template, just a check):
 5. **Foreshadow the next unit's hook** if there's a natural setup (e.g. "Tomorrow's verses do something with this exact tension — hold the thought").
 
 Keep it shorter than the lesson itself. The reply isn't another mini-essay; it's the conversational beat that earns the next day's lesson the right to call back.
+
+**Mode-aware length:** in `desktop` mode the reply can run a few short paragraphs. In `dispatch` mode keep it to **3-5 sentences total** — one specific affirmation, one pressure point, at most one callback. Phone readers won't scroll a wall of text, and the full evaluation still lands in `student_notes.md` either way.
 
 ### Step 7 — Append to student_notes.md
 

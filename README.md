@@ -25,22 +25,74 @@ The plugin ships with **The Art of War** (Sun Tzu, Lionel Giles 1910 translation
 
 ## Currently in the curated library
 
+13 texts are split and ready. Use `add-text "<title>"` to load any of them.
+
+*Eastern wisdom*
 - The Art of War — Sun Tzu (Giles 1910) — *bundled with the plugin*
-
-**On the roadmap** (use `add-text` with a URL or file in the meantime):
-
-- Meditations — Marcus Aurelius (Long)
-- Tao Te Ching — Lao Tzu (Legge)
-- Analects — Confucius (Legge)
-- Enchiridion — Epictetus (Higginson)
-- Nicomachean Ethics — Aristotle (Ross)
+- Tao Te Ching — Lao Tzu (Legge 1891)
+- Analects — Confucius (Legge 1893)
 - Bhagavad Gita — Edwin Arnold's *Song Celestial* (1885)
-- The Prince — Machiavelli (Marriott)
-- Thus Spoke Zarathustra — Nietzsche (Common)
-- World English Bible (per book, with a sub-index)
-- Quran (Sale or Pickthall)
-- Torah (JPS 1917)
-- Principal Upanishads — Max Müller translations
+- Principal Upanishads — Paramananda 1919 — *currently covers Isa, Katha, Kena (3 of 13); the rest pending*
+
+*Greek & Roman philosophy*
+- Nicomachean Ethics — Aristotle (D. P. Chase 1847)
+- Enchiridion — Epictetus (Long 1877)
+- Meditations — Marcus Aurelius (Long 1862)
+
+*Strategy*
+- The Prince — Machiavelli (Marriott 1908)
+
+*Sacred texts*
+- The Torah / Five Books of Moses — JPS 1917
+- The Quran — Rodwell 1861 — *canonical surah order; Rodwell originally arranged chronologically*
+- The Bible (66 books) — World English Bible
+
+*Modern philosophy*
+- Thus Spake Zarathustra — Nietzsche (Common 1909)
+
+**On the roadmap** (use `add-text` with a URL or file in the meantime — see `library/SPLIT_PLAN.md` for the planned three-session build-out):
+
+*Eastern wisdom*
+- Zhuangzi — Chuang Tzu (Legge or Giles)
+- Mencius (Legge)
+- Doctrine of the Mean + Great Learning (Legge)
+- Dhammapada (Max Müller, 1881)
+
+*Greek & Roman philosophy*
+- Plato — Apology / Crito / Phaedo (Jowett)
+- Plato — Republic (Jowett)
+- Aristotle — Politics (Jowett)
+- Epictetus — Discourses (Long)
+- Seneca — Letters to Lucilius (Gummere)
+- Cicero — On Duties / *De Officiis* (Miller)
+
+*Strategy*
+- 36 Stratagems
+- Machiavelli — Discourses on Livy
+- Clausewitz — On War (Graham, 1873)
+- Bushido — Inazo Nitobe (1900)
+
+*Christian devotional & mystical*
+- Augustine — Confessions (Pusey)
+- Boethius — Consolation of Philosophy
+- Thomas à Kempis — Imitation of Christ
+
+*Sufi & Persian*
+- Rumi — Masnavi (Whinfield 1898 / Nicholson)
+- Saadi — Gulistan
+- Rubaiyat of Omar Khayyam (FitzGerald)
+
+*Jewish wisdom*
+- Pirkei Avot / Ethics of the Fathers
+
+*Modern philosophy & political*
+- Pascal — Pensées (Trotter)
+- Mill — On Liberty
+- Federalist Papers
+
+*American transcendentalist*
+- Thoreau — Walden
+- Emerson — Essays (First and Second Series)
 
 Once a text lands in the library: `add-text "Meditations"`.
 
